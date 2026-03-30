@@ -15,7 +15,8 @@ export function useWebSocket(patientId) {
   useEffect(() => {
     if (!patientId) return
 
-    const WS_URL = `ws://localhost:8000/ws/${patientId}`
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+    const WS_URL = `${apiUrl.replace(/^http/, 'ws')}/ws/${patientId}`
 
     const connect = () => {
       try {

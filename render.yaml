@@ -17,8 +17,12 @@ services:
     name: neoguard-frontend
     runtime: static
     rootDir: NeoGuard/neoguard-frontend
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npx vite build
     staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     envVars:
       - key: VITE_API_URL
         value: https://neoguard-backend.onrender.com
