@@ -17,7 +17,7 @@ services:
     name: neoguard-frontend
     runtime: static
     rootDir: NeoGuard/neoguard-frontend
-    buildCommand: npm install && npx vite build
+    buildCommand: npm install --include=dev && npm run build
     staticPublishPath: dist
     routes:
       - type: rewrite
