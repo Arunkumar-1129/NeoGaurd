@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: neoguard-backend
+    runtime: python
+    rootDir: NeoGuard
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        value: ""
+      - key: TELEGRAM_CHAT_ID
+        value: ""
+      - key: GROQ_API_KEY
+        value: ""
+
+  - type: web
+    name: neoguard-frontend
+    runtime: static
+    rootDir: NeoGuard/neoguard-frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://neoguard-backend.onrender.com
